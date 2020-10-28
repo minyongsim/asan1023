@@ -2,7 +2,7 @@
 
   // 로고를 클릭하면 main.html의 #content를 load() 하시오.
   $('#wrap')
-    .on("click", "#header h1 a, #footer .quickMenu a, .mainContent #step_area a, .contTit .prev a", function () {
+    .on("click", "#header h1 a, #footer .quickMenu a, .mainContent #step_area a, .contTit .prev a, .menuBox a", function () {
       var url = this.href;
       $("#container > #content").remove();
       $("#container").load(url + " #content");
@@ -36,7 +36,7 @@
   $('#container ').on('click', '.medicalContent .mediList a', function (e) {
     e.preventDefault()
     var url = this.href;
-    var part = this.id;
+    var part = $(this).attr('class')
     $("#container > #content").remove();
     $("#container").load(url + " #content", function () {
       var newContent = '';
@@ -53,16 +53,24 @@
   })
 
  
-
-  // 헤더박스에 스크롤 이벤트 시 픽스드
-  $(window).scroll(function () {
-    var sct = $(this).scrollTop()
-    if (sct >= 50 && !$('#headeer').hasClass('on')) {
-      $('#header').stop().slideUp(100).stop().slideDown(100).addClass('on')
-    } else if (sct < 50 && $('#header').hasClass('on')) {
-      $('#header').removeClass('on')
-    }
+// 햄버거 버튼 클릭하면 네비박스 열기
+$('#lnb_menu').on('click',function(){
+  $(this).next().css({
+    display:'block'
   })
+  $('#lnb').animate({
+    left:'0px'
+  },500)
+})
+$('#lnb_close').on('click',function(){
+  $('#lnb').animate({
+    left:'-274px'
+  },500,function(){
+    $('#navWrap').css({
+      display:'none'
+    })
+  })
+})
 
 
 
