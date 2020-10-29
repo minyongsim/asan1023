@@ -72,6 +72,18 @@ $('#lnb_close').on('click',function(){
   })
 })
 
+//섹션 한줄광고 위로 슬라이드
+setInterval(kim, 3000)
+
+function kim (){
+  $('.mainContent .main_noti a:first-child').animate({
+    marginTop:'-50px'
+  },500,function(){
+    $(this).appendTo('.mainContent .main_noti').css({
+      marginTop:'0px'
+    })
+  })
+}
 
 
 
